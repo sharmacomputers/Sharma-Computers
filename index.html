@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Computers - Your IT Solutions Partner</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Global Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header & Navbar Styles */
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .logo-text span {
+            color: #3498db;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: #ecf0f1;
+            margin-top: -5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        /* Hero Slider Section */
+        
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .slide-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 0 20px;
+            color: white;
+        }
+        
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .slide-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            animation: fadeInUp 1.4s ease;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        /* Slider Navigation */
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 2;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .slider-dot.active {
+            background: #3498db;
+        }
+        /* Animation */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Services Section */
+        
+        .services {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        /* Products Section */
+        
+        .products {
+            padding: 80px 0;
+            background-color: #f1f5f9;
+            text-align: center;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: left;
+        }
+        
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .product-info p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        /* WhatsApp Query Button */
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+        
+        .whatsapp-btn i {
+            font-size: 1.2rem;
+        }
+        /* Footer */
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: #3498db;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column p,
+        .footer-column a {
+            color: #bdc3c7;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            color: #3498db;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            background: #34495e;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        /* Responsive Styles */
+        
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 80px;
+                background: #2c3e50;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: circle(0px at 90% -10%);
+                transition: all 0.5s ease-out;
+            }
+            .nav-links.active {
+                clip-path: circle(1000px at 90% -10%);
+            }
+            .nav-links li {
+                margin: 15px 0;
+            }
+            .hamburger {
+                display: block;
+            }
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .toggle .line2 {
+                opacity: 0;
+            }
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+            .slide-content p {
+                font-size: 1rem;
+            }
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            .hero-slider {
+                height: 70vh;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header & Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <!-- Replace with your actual logo -->
+                    <img src="ico.png" alt="Sharma Computers Logo">
+                    <div class="logo-text">
+                        <h1>SHARMA <span>COMPUTERS</span></h1>
+                        <p>Always with you</p>
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider">
+        <!-- Slide 1 -->
+        <div class="slide active" style="background-image: url('https://www.dtplabs.com/wp-content/uploads/2021/08/DTP-Services-1-1.jpg');">
+            <div class="container">
+                <div class="slide-content">
+                    <h2>Expert Print & Design</h2>
+                    <p>We Designing professional brochures, flyers, business cards, invitations, posters, certificates, and menus etc.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" style="background-image: url('https://uniquepersonalisedgift.com/wp-content/uploads/2022/09/Personalized-Gifts-Banner-2.jpg');">
+            <div class="container">
+                <div class="slide-content">
+                    <h2>Custom Gift Creations</h2>
+                    <p>Create personalized mugs, t-shirts, cushions, keychains, and photo frames using vibrant, durable sublimation printing for perfect custom gifts.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" style="background-image: url('https://i.pinimg.com/736x/45/d9/c2/45d9c27cf0cf974e281ac9ad3cf4bc23.jpg');">
+            <div class="container">
+                <div class="slide-content">
+                    <h2>Desktop, Laptop & Printer Fixes</h2>
+                    <p>Fast, reliable repair services for computers, laptops, and printers. Get your devices fixed by experts at affordable prices.</p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Navigation Dots -->
+        <div class="slider-nav">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>DTP WORK</h3>
+                    <p>We offer expert desktop publishing services, specializing in creating stunning designs for business cards, brochures, flyers, banners, certificates, and more. Our focus is on delivering high-quality, print-ready materials that effectively
+                        communicate your brand and message.</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-gift"></i>
+                    <h3>SUBLIMATION PRINTING</h3>
+                    <p>We offer high-quality sublimation printing for personalized items like coffee mugs, t-shirts, mobile covers, and more. Create vibrant, custom designs with long-lasting colors, perfect for gifts, promotions, and personal use. Bring
+                        your ideas to life with us!</p>
+                </div>
+
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>REPAIRING</h3>
+                    <p>Expert repair services for desktops, laptops, and printers. We fix hardware and software issues, ensuring your devices run smoothly. Fast, reliable, and affordable solutions for all your tech repair needs, from system errors to printer
+                        malfunctions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <p>Modern computer accessories and personalized gifts customizable for all occasions.</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 - Rubber Stamp -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://fotoframe.in/wp-content/uploads/2020/09/Stamp.jpg" alt="Custom Rubber Stamp">
+                    </div>
+                    <div class="product-info">
+                        <h3>Rubber Stamp</h3>
+                        <p>High-quality rubber stamp at ₹100.Delivery charges extra. Order now!</p>
+                        <div class="product-price">
+                            <span class="price">₹100 - ₹700</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/918910844985?text=Hi%20Sharma%20Computers,%20I%20have%20a%20query%20about%20your%20Custom%20Rubber%20Stamp')">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 - Custom Coffee Mug -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://5.imimg.com/data5/NJ/CX/GLADMIN-58215111/polymer-rubber-stamps-500x500.jpg" alt="Custom Coffee Mug">
+                    </div>
+                    <div class="product-info">
+                        <h3>Sel ink Stamp</h3>
+                        <p>High-quality Self ink stamp at ₹300.Delivery charges extra. Order now!</p>
+                        <div class="product-price">
+                            <span class="price">₹300 - ₹350</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/918910844985?text=Hi%20Sharma%20Computers,%20I%20have%20a%20query%20about%20your%20Custom%20Coffee%20Mug')">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 - Custom Mobile Cover -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.jiomart.com/images/product/original/rvoauduqvf/whats-your-kick-couple-with-beautiful-birds-design-printed-white-ceramic-coffee-mug-and-tea-mug-325-ml-product-images-orvoauduqvf-p591498904-2-202205211828.jpg?im=Resize=(420,420)" alt="Customiz coffe mug">
+                    </div>
+                    <div class="product-info">
+                        <h3>customize coffee mug</h3>
+                        <p>Custom coffee mug printing at just ₹200. Personalized designs, perfect gifts, stylish and unique. Delivery charge extra. Order yours today!</p>
+                        <div class="product-price">
+                            <span class="price">₹200 - ₹700</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/918910844985?text=Hi%20Sharma%20Computers,%20I%20have%20a%20query%20about%20your%20Custom%20Mobile%20Cover')">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 - Wireless Mouse -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://tiimg.tistatic.com/fp/1/007/710/long-durable-and-high-performance-black-usb-optical-computer-mouse-with-curser-093.jpg" alt="Wireless Mouse">
+                    </div>
+                    <div class="product-info">
+                        <h3>Optical Mouse</h3>
+                        <p>Ergonomic optical mouse with high precision tracking starting at rs250 Delivery charge extra..</p>
+                        <div class="product-price">
+                            <span class="price">₹250 - ₹800</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/918910844985?text=Hi%20Sharma%20Computers,%20I%20have%20a%20query%20about%20your%20Wireless%20Mouse')">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 - Mechanical Keyboard -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mechanical Keyboard">
+                    </div>
+                    <div class="product-info">
+                        <h3>Mechanical Keyboard</h3>
+                        <p>Premium mechanical keyboard with RGB lighting for gamers and professionals Delivery charge extra.</p>
+                        <div class="product-price">
+                            <span class="price">₹420 - ₹2000</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/918910844985?text=Hi%20Sharma%20Computers,%20I%20have%20a%20query%20about%20your%20Mechanical%20Keyboard')">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 - Basic Keyboard -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://media.istockphoto.com/id/1437895482/vector/creative-and-clean-business-card-template-minimalist-name-card-two-sided-cards.jpg?s=612x612&w=0&k=20&c=Mak8SmXaSoZM-qdMZoN_fS45GGrU3oBxLyYdz7gwGYo=" alt="Basic Keyboard">
+                    </div>
+                    <div class="product-info">
+                        <h3> Business card</h3>
+                        <p>Professional business card printing at just ₹250. High-quality, custom designs. Stand out and impress. Delivery charge extra.</p>
+                        <div class="product-price">
+                            <span class="price">₹250 - ₹1300</span>
+                            <button class="whatsapp-btn" onclick="window.open('https://wa.me/918910844985?text=Hi%20Sharma%20Computers,%20I%20have%20a%20query%20about%20your%20Basic%20Keyboard')">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Sharma Computers since 2014 Expert in DTP work, sublimation printing, desktop, laptop, and printer repairing. Quality service, trusted experience, reliable solutions every time.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#products">Products</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>1582 Rajdanga main road kasba New market shop no:F-93/F-101 Kolkata:700107</p>
+                    <p><i class="fas fa-phone"></i> +91 8910844985</p>
+                    <p><i class="fas fa-envelope"></i> sharmacomputers2014@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Thu-San: 11:00 AM - 09:00 PM</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2014 Sharma Computers. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navbar Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('toggle');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Image Slider Functionality
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Function to show a specific slide
+        function showSlide(index) {
+            // Reset all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Show the selected slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        // Function for automatic sliding
+        function startSlider() {
+            slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        // Initialize the slider
+        function initSlider() {
+            showSlide(0);
+            startSlider();
+
+            // Pause slider on hover
+            const slider = document.querySelector('.hero-slider');
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            slider.addEventListener('mouseleave', startSlider);
+
+            // Add click event to dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    startSlider();
+                });
+            });
+        }
+
+        // Start the slider when page loads
+        window.addEventListener('load', initSlider);
+    </script>
+</body>
+
+</html>
